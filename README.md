@@ -133,5 +133,107 @@ kubectl version --client
 terraform --version
 ```
 
+![client](https://github.com/Sanjo-varghese/super-mario/assets/116708794/a4e4211d-2e52-41d6-be1e-33a76856b6ab)
+
+**Now change directory into the EKS-TF**
+
+**Run Terraform init**
+
+**NOTE: Don’t forgot to change the s3 bucket name in the backend.tf file**
+
+```sh
+cd EKS-TF
+terraform init
+``
+
+![35](https://github.com/Sanjo-varghese/super-mario/assets/116708794/69f1afbd-4e78-4e8c-8620-eb5588eed0de)
+
+- Now run terraform validate and terraform plan
+
+```sh
+terraform validate
+terraform plan
+```
+![36](https://github.com/Sanjo-varghese/super-mario/assets/116708794/0042dc0f-0efc-4bfd-a1f3-676125a70e41)
+- Now Run terraform apply to provision cluster.
+
+```sh
+terraform apply --auto-approve
+```
+![37](https://github.com/Sanjo-varghese/super-mario/assets/116708794/c7fd04e7-62eb-4aba-8c2f-3e19bfc134a3)
+
+- Completed in 10 mins
+
+![38](https://github.com/Sanjo-varghese/super-mario/assets/116708794/b0a5a1b0-1cc9-474e-b875-8d419a05e2b4)
+
+- Update the Kubernetes configuration
+
+- Make sure change your desired region
+
+```sh
+aws eks update-kubeconfig --name EKS_CLOUD --region us-east-2
+
+![39](https://github.com/Sanjo-varghese/super-mario/assets/116708794/568f6d99-a7b3-4739-a3b3-365a73b7f34b)
+
+- Now change directory back to super-mario
+```sh
+cd ..
+```
+**Let’s apply the deployment and service**
+
+# Deployment
+```sh
+kubectl apply -f deployment.yaml
+```
+#to check the deployment 
+- kubectl get all
+
+
+![40](https://github.com/Sanjo-varghese/super-mario/assets/116708794/b4a57b57-f44e-4dac-848f-3401c1abcbcb)
+
+- Now let’s apply the service
+
+# Service
+```sh
+kubectl apply -f service.yaml
+kubectl get all
+```
+![41](https://github.com/Sanjo-varghese/super-mario/assets/116708794/29e247cc-35e1-449a-acbf-d21e2fbf7c09)
+
+**Now let’s describe the service and copy the LoadBalancer Ingress**
+
+```sh
+kubectl describe service mario-service
+```
+![42](https://github.com/Sanjo-varghese/super-mario/assets/116708794/dc7de88f-c9f4-4c31-b9ca-0d3944f7a196)
+
+**Paste the ingress link in a browser and you will see the Mario game.**
+
+**Let’s Go back to 1985 and play the game like children.**
+![43](https://github.com/Sanjo-varghese/super-mario/assets/116708794/2633e03a-048d-4211-b854-03d9c1846be9)
+
+
+# Destruction :
+**Let's remove the service and deployment first**
+
+```sh
+kubectl get all
+kubectl delete service mario-service
+kubectl delete deployment mario-deployment
+```
+
+**Let’s Destroy the cluster**
+
+```sh
+terraform destroy --auto-approve
+```
+
+**After 10mins Resources that are provisioned will be removed.**
+
+**Thank you for joining this nostalgic journey to the 90s! We hope you enjoyed rekindling your love for gaming with the deployment of the iconic Mario game on Kubernetes. Embracing the past while exploring new technologies is a true testament to the timeless allure of classic games. Until next time, keep gaming and reliving those fantastic memories! 👾🎮.**
+
+
+
+
 
 
