@@ -115,7 +115,7 @@ sed -i -e 's/\r$//' script.sh
 sudo chmod +x script.sh
 ./script.sh
 ```
-**To Install Docker**
+**To Install Docker in ubuntu instance**
 ```sh 
 sudo apt install docker.io -y
 ```
