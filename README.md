@@ -93,7 +93,43 @@ Provide a Name for Role and click on Create role.
 # STEP 3: Cluster provision
 **Now clone this Repo.**
 
+``sh
+git clone https://github.com/Sanjo-varghese/super-mario.git
+``
+![clus 1](https://github.com/Sanjo-varghese/super-mario/assets/116708794/ea070eed-3c13-41e8-bd0a-1a13c4729bda)
 
+**change directory**
+``sh
+cd super-mario
+``
+
+**Provide the executable permission to script.sh file, and run it.**
+**If  Bash is not installing **
+follow the commands 
+``sh 
+sed -i -e 's/\r$//' script.sh
+``
+``sh
+sudo chmod +x script.sh
+./script.sh
+``
+**To Install Docker**
+``sh 
+sudo apt install docker.io -y
+``
+
+![clus 2](https://github.com/Sanjo-varghese/super-mario/assets/116708794/1ead6b17-8066-477d-ad86-9f07132c3c48)
+
+**This script will install Terraform, AWS cli, Kubectl, Docker.**
+
+**Check versions**
+
+``sh
+docker --version
+aws --version
+kubectl version --client
+terraform --version
+``
 
 
 
