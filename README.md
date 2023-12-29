@@ -9,54 +9,91 @@ Hey folks, remember the thrill of 90's gaming? Let's step back in time and reliv
 **Super Mario is a classic game loved by many. In this guide, we'll explore how to deploy a Super Mario game on Amazon's Elastic Kubernetes Service (EKS). Utilizing Kubernetes, we can orchestrate the game's deployment on AWS EKS, allowing for scalability, reliability, and easy management.**
 
 
-**Prerequisites:**
-1. An Ubuntu Instance
-2. IAM role
-3. Terraform should be installed on instance
-4. AWS CLI and KUBECTL on Instance
+## Prerequisites:
+
+**1. An Ubuntu Instance**
+**2. IAM role**
+**3. Terraform should be installed on instance**
+**4. AWS CLI and KUBECTL on Instance**
 
 **LET'S DEPLOY**
-STEP 1: Launch Ubuntu instance
-Sign in to AWS Console: Log in to your AWS Management Console.
 
-Navigate to EC2 Dashboard: Go to the EC2 Dashboard by selecting "Services" in the top menu and then choosing "EC2" under the Compute section.
+**STEP 1: Launch Ubuntu instance**
+**Sign in to AWS Console: Log in to your AWS Management Console.**
 
-Launch Instance: Click on the "Launch Instance" button to start the instance creation process.
+**Navigate to EC2 Dashboard: Go to the EC2 Dashboard by selecting "Services" in the top menu and then choosing "EC2" under the Compute section.**
 
-Choose an Amazon Machine Image (AMI): Select an appropriate AMI for your instance. For example, you can choose Ubuntu image.
+**Launch Instance: Click on the "Launch Instance" button to start the instance creation process.**
 
-Choose an Instance Type: In the "Choose Instance Type" step, select t2.micro as your instance type. Proceed by clicking "Next: Configure Instance Details."
+**Choose an Amazon Machine Image (AMI): Select an appropriate AMI for your instance. For example, you can choose Ubuntu image.**
 
-Configure Instance Details:
+**Choose an Instance Type: In the "Choose Instance Type" step, select t2.micro as your instance type. Proceed by clicking "Next: Configure Instance Details."**
 
-For "Number of Instances," set it to 1 (unless you need multiple instances).
+**Configure Instance Details:**
 
-Configure additional settings like **network, subnets, IAM role, etc., if necessary.**
+**For "Number of Instances," set it to 1 (unless you need multiple instances).**
 
-For "Storage," click "Add New Volume" and set the size to 8GB (or modify the existing storage to 8GB).
+**Configure additional settings like** **network, subnets, IAM role, etc., if necessary.**
 
-Click "Next: Add Tags" when you're done.
+**For "Storage," click "Add New Volume" and set the size to 8GB (or modify the existing storage to 8GB).**
 
-Add Tags (Optional): Add any desired tags to your instance. This step is optional, but it helps in organizing instances.
+**Click "Next: Add Tags" when you're done.**
 
-Configure Security Group:
+**Add Tags (Optional): Add any desired tags to your instance. This step is optional, but it helps in organizing instances.**
 
-Choose an existing security group or create a new one.
+**Configure Security Group:**
 
-Ensure the security group has the necessary inbound/outbound rules to allow access as required.
+**Choose an existing security group or create a new one.**
 
-Review and Launch: Review the configuration details. Ensure everything is set as desired.
+**Ensure the security group has the necessary inbound/outbound rules to allow access as required.**
 
-Select Key Pair:
+**Review and Launch: Review the configuration details. Ensure everything is set as desired.**
 
-Select "Choose an existing key pair" and choose the key pair from the dropdown.
+**Select Key Pair:**
 
-Acknowledge that you have access to the selected private key file.
+**Select "Choose an existing key pair" and choose the key pair from the dropdown.**
 
-Click "Launch Instances" to create the instance.
+**Acknowledge that you have access to the selected private key file.**
 
-Access the EC2 Instance: Once the instance is launched, you can access it using the key pair and the instance's public IP or DNS.
+**Click "Launch Instances" to create the instance.**
 
-Ensure you have necessary permissions and follow best practices while configuring security groups and key pairs to maintain security for your EC2 instance.
+**Access the EC2 Instance: Once the instance is launched, you can access it using the key pair and the instance's public IP or DNS.**
+
+**Ensure you have necessary permissions and follow best practices while configuring security groups and key pairs to maintain security for your EC2 instance.**
+
+## STEP 2: Create IAM role
+**Search for IAM in the search bar of AWS and click on roles**
+![image](https://github.com/Sanjo-varghese/super-mario/assets/116708794/f0243386-18c2-49c2-a501-b746a136c03f)
+
+**Click on Create Role**
+![image](https://github.com/Sanjo-varghese/super-mario/assets/116708794/5c31636e-bcf6-4bdd-8997-f92bcb5357db)
+
+**Select entity type as AWS service**
+Use case as EC2 and click on Next.
+![image](https://github.com/Sanjo-varghese/super-mario/assets/116708794/961fa000-37aa-4d72-961c-7de82ccacd83)
+
+**For permission policy select Administrator Access Just for learning purpose), click Next.**
+![image](https://github.com/Sanjo-varghese/super-mario/assets/116708794/fa2625cc-ab86-4c75-a5d1-d966e459d775)
+Provide a Name for Role and click on Create role.
+![image](https://github.com/Sanjo-varghese/super-mario/assets/116708794/6ef3439a-b4ca-4c82-8e83-3e89ec4b8a38)
+
+**Role is created**
+![image](https://github.com/Sanjo-varghese/super-mario/assets/116708794/d85d1f80-962c-40bc-bb90-47f5d8ea1ee7)
+
+**Now Attach this role to Ec2 instance that we created earlier, so we can provision cluster from that instance.**
+**Go to EC2 Dashboard and select the instance.**
+**Click on Actions --> Security --> Modify IAM role.**
+
+![image](https://github.com/Sanjo-varghese/super-mario/assets/116708794/728845f4-5a9a-4b62-81fc-608b1bc3d2d2)
+**Select the Role that created earlier and click on Update IAM role.**
+![image](https://github.com/Sanjo-varghese/super-mario/assets/116708794/e2c82b2b-c307-4961-8223-44e9c9ec941c)
+
+**Connect the instance to Mobaxtreme or Putty**
+
+# STEP 3: Cluster provision
+**Now clone this Repo.**
+
+
+
 
 
